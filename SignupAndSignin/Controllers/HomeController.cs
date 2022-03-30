@@ -23,8 +23,13 @@ namespace SignupAndSignin.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
-        {
+        public IActionResult Register() {
+            ViewBag.Message = "Registration Page";
+            return View();
+        }
+
+        public IActionResult ThankYou() { 
+            ViewBag.Message = "Thank You for Registering"
             return View();
         }
 
