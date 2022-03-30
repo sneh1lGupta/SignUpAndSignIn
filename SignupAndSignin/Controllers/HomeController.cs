@@ -24,17 +24,31 @@ namespace SignupAndSignin.Controllers
             return View();
         }
 
-        public IActionResult Register() {
-            ViewBag.Message = "Registration Page";
-            return View();
-        }
 
         public IActionResult ThankYou() {
             ViewBag.Message = "Thank You for Registering";
             return View();
         }
-        public IActionResult SendData() { 
-            var dataList = from
+
+        public IActionResult Add() { 
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> AddUser(Users u) {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    _Db.Registrations.Add(u);
+                    await _Db.SaveChangesAsync();
+                    return RedirectToAction("ThankYou");
+                }
+
+                return View();
+            }
+            catch (Exception e) {
+                return View(e);
+            }
         }
         public IActionResult ShowUsers() {
             var userList = from u in _Db.Registrations
