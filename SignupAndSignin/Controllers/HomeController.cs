@@ -28,8 +28,8 @@ namespace SignupAndSignin.Controllers
             return View();
         }
 
-        public IActionResult ThankYou() { 
-            ViewBag.Message = "Thank You for Registering"
+        public IActionResult ThankYou() {
+            ViewBag.Message = "Thank You for Registering";
             return View();
         }
 
