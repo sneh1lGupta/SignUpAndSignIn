@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using SignupAndSignin.Data;
 using SignupAndSignin.Models;
 using System;
 using System.Collections.Generic;
@@ -11,11 +12,11 @@ namespace SignupAndSignin.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly AppDbContext _Db;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(AppDbContext Db)
         {
-            _logger = logger;
+            _Db = Db;
         }
 
         public IActionResult Index()
@@ -31,6 +32,21 @@ namespace SignupAndSignin.Controllers
         public IActionResult ThankYou() {
             ViewBag.Message = "Thank You for Registering";
             return View();
+        }
+        public IActionResult SendData() { 
+            var dataList = from
+        }
+        public IActionResult ShowUsers() {
+            var userList = from u in _Db.Registrations
+                           select new Users
+                           {
+                               id = u.id,
+                               name = u.name,
+                               email = u.email,
+                               password = u.password
+
+                           };
+            return View(userList);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
