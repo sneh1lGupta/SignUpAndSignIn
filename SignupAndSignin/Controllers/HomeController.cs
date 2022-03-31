@@ -21,6 +21,7 @@ namespace SignupAndSignin.Controllers
 
         public IActionResult Index()
         {
+            ViewBag.Message = "asdada";
             return View();
         }
 
